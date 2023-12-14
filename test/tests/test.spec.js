@@ -15,7 +15,9 @@ describe('Dropbox API Tests', () => {
     const response = await dropboxApi.sendRequest(endpoint, { query }, 'post', 'invalid-bearer-token');
 
     expect(response.status).to.equal(401);
-    expect(response.data).to.not.be.undefined;
+    expect(response.data).to.have.property('error');
+    expect(response.data.error).to.have.property('.tag').that.equals('invalid_access_token');
+    expect(response.data).to.have.property('error_summary').that.equals('invalid_access_token/');
   });
 
   it('Positive Test: User Authentication with Valid Bearer Token', async () => {
@@ -24,7 +26,7 @@ describe('Dropbox API Tests', () => {
 
     const response = await dropboxApi.sendRequest(endpoint, { query }, 'post', validToken);
     expect(response.status).to.equal(200);
-    console.log(response);
+    expect(response.data).to.have.property('result').that.equals(query);
   });
 
   it('Positive Test: List Folder Contents', async () => {
