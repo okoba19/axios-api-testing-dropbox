@@ -1,10 +1,13 @@
 const axios = require('axios');
 const { BASE_URL } = require('../config/endpoints');
+const tokenEncryptor = require('../helpers/tokenEncryptor');
+const encryptor = new tokenEncryptor('cat19');
 
 const sendRequest = async (url, data = null, method = 'get', bearerToken) => {
+  token = encryptor.decrypt(bearerToken);
   const headers = {
     'Content-Type': 'application/json',
-    'Authorization': `Bearer ${bearerToken}`
+    'Authorization': `Bearer ${token}`
   };
 
   try {

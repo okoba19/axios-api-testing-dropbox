@@ -10,7 +10,6 @@ describe('Dropbox API Tests', () => {
   it('Negative Test: User Authentication with Invalid Bearer Token', async () => {
     const query = 'foo';
     const endpoint = 'check/user';
-
     const response = await dropboxApi.sendRequest(endpoint, { query }, 'post', invalidToken);
 
     expect(response.status).to.equal(401);
