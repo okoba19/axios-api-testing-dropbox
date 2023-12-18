@@ -29,6 +29,17 @@ cd dropbox-api-testing
 
 npm install
 
+## Configuration
+Obtain a Dropbox API access token from the Dropbox Developer Console. (https://www.dropbox.com/developers/apps)
+Create new app and generate new Bearer Token. Configure all Permisions for created app.
+
+After receving Bearer token encrypt it with tokenEncryptor class.
+
+Update a .env file in the project root and add your encrypted access token:
+as a VALID_TOKEN
+
+DROPBOX_ACCESS_TOKEN=your-dropbox-api-token
+
 ## Running Tests
 Execute the following command to run the tests:
 
